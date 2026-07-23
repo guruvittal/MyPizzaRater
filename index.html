@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slice & Rise - Pizza Quality Standard Agent</title>
+  <link rel="stylesheet" href="styles.css?v=20260626">
+  <meta name="description" content="An interactive multimodal AI agent and dashboard simulating pizza quality control auditing based on corporate Slice & Rise standards. Ready for Gemini Enterprise integration.">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header>
+    <div class="logo-container">
+      <div class="logo-icon">P</div>
+      <div class="logo-text">
+        <h1>Slice & Rise</h1>
+        <span>Gemini QA Workspace</span>
+      </div>
+    </div>
+
+    <!-- View Mode Selector -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="chat" id="tabChat">
+        <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+        Chat & Scanner
+      </button>
+      <button class="nav-tab" data-tab="analytics" id="tabAnalytics">
+        <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+        Analytics Dashboard
+      </button>
+    </nav>
+
+    <!-- Meta / Live Store Info -->
+    <div class="meta-info">
+      <div>Vegas West Store #4021</div>
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span>Active Shift</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- TAB 1: CHAT & SCANNER -->
+    <div id="chatView" class="tab-view active">
+      <div class="simulator-grid">
+        
+        <!-- Left: Gemini Enterprise Workspace Simulator -->
+        <section class="chat-workspace">
+          <div class="chat-header">
+            <div class="agent-profile">
+              <div class="agent-avatar">
+                <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 1.25-.3 2.45-.81 3.5H16.5v-1.5a1.5 1.5 0 0 0-1.5-1.5h-3v-1.5a1.5 1.5 0 0 0-1.5-1.5H8.5V9.5A1.5 1.5 0 0 0 7 8H6c0-1.74 1.13-3.23 2.72-3.78L9 4.5A1.5 1.5 0 0 0 10.5 6h1.5M6.22 15.62l1.28-1.28c.31.25.71.41 1.15.41h1.85v1.5a1.5 1.5 0 0 0 1.5 1.5h1.5v1.84c-3.11-.27-5.75-2.22-6.78-4.97z"/></svg>
+              </div>
+              <div class="agent-name">
+                <h3>Slice & Rise QA Agent</h3>
+                <span class="agent-status">Online • Agent-to-UI Integrated</span>
+              </div>
+            </div>
+            <span class="a2ui-badge" style="border-color: rgba(0, 122, 83, 0.3); color: var(--color-success); background: rgba(0, 122, 83, 0.1)">Gemini Enterprise Active</span>
+          </div>
+
+          <!-- Chat messages scroll box -->
+          <div class="chat-messages" id="chatMessages">
+            <!-- Messages injected dynamically by app.js -->
+          </div>
+
+          <!-- Input Controls / suggestions -->
+          <div class="chat-input-container">
+            <div class="chat-suggestions">
+              <span class="suggestion-chip">How are we doing this week?</span>
+              <span class="suggestion-chip">Show standards specs</span>
+              <span class="suggestion-chip">Oven speed check</span>
+            </div>
+            
+            <div class="chat-input-wrapper">
+              <input type="text" class="chat-input" id="chatInput" placeholder="Ask the agent a question or request BigQuery reports..." aria-label="Chat Message Input">
+              <div class="chat-input-buttons">
+                <button class="chat-btn" id="attachBtn" title="Attach file (mocked)">
+                  <svg style="width: 18px; height: 18px; fill: currentColor" viewBox="0 0 24 24"><path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-3.31 2.24-6 5-6s5 2.69 5 6v11.5c0 1.1-.9 2-2 2s-2-.9-2-2V6H9v11.5c0 2.48 1.95 4.5 4.5 4.5s4.5-2.02 4.5-4.5V6h-1.5z"/></svg>
+                </button>
+                <button class="chat-btn send-btn" id="sendBtn" title="Send message">
+                  <svg style="width: 18px; height: 18px; fill: currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 7z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: Multi-angle Camera Scanner Simulator -->
+        <section class="scanner-workspace">
+          <div class="scanner-header">
+            <h3>
+              <svg style="width: 16px; height: 16px; fill: var(--color-accent);" viewBox="0 0 24 24"><path d="M9 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10-3h-4v2h4v-2zm0 4h-4v2h4v-2zm-3-12c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h3c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2h-3zm2 4h-2V3h2v2zm-6.2 3.6A5.92 5.92 0 0 1 12 9c0-.7.13-1.37.38-2H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4.38c-.63.25-1.3.38-2 .38-2.58 0-4.74-1.63-5.58-3.9A1 1 0 0 0 13.8 8.6z"/></svg>
+              Multimodal Visual Scanner
+            </h3>
+            <span class="a2ui-badge" style="border-color: rgba(255,255,255,0.08); color: var(--text-secondary); background: transparent;">Top-Down Camera 01</span>
+          </div>
+
+          <!-- Camera Screen -->
+          <div class="camera-viewport-wrapper">
+            <div class="camera-viewport" id="cameraViewport">
+              <img src="assets/perfect.png" alt="Live Camera Preview" class="camera-feed" id="cameraFeed">
+              
+              <!-- Scanning overlays -->
+              <div class="camera-overlay">
+                <div class="overlay-corners">
+                  <div class="overlay-corners-inner"></div>
+                </div>
+                <div class="camera-grid"></div>
+                <div class="camera-guide-circle"></div>
+                <div class="scan-line"></div>
+                
+                <!-- Overlay Stats banner -->
+                <div class="scanner-stats-overlay">
+                  <div>RESOLUTION: 2048 x 2048</div>
+                  <div class="scanner-badge">
+                    <span class="status-dot"></span>
+                    PRESET: Artisanal Perfect
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pizza Presets Selector -->
+          <div class="presets-drawer">
+            <h4 class="drawer-title">Test with Presets (Multi-angle Sim)</h4>
+            <div class="pizza-presets">
+              
+              <!-- Perfect Preset -->
+              <button class="pizza-card active" data-pizza="perfect" id="cardPerfect" aria-label="Select Perfect Neapolitan Preset">
+                <div class="pizza-card-img-wrapper">
+                  <img src="assets/perfect.png" alt="Artisanal Perfect Neapolitan pizza" class="pizza-card-img">
+                </div>
+                <div class="pizza-card-info">
+                  <span class="pizza-card-title">Perfect Spec</span>
+                  <span class="pizza-card-desc">Ideal leoparding & spring</span>
+                  <span class="pizza-card-grade pass">Grade: PASS</span>
+                </div>
+              </button>
+
+              <!-- Underbaked Preset -->
+              <button class="pizza-card" data-pizza="underbaked" id="cardUnderbaked" aria-label="Select Underbaked Pale Preset">
+                <div class="pizza-card-img-wrapper">
+                  <img src="assets/underbaked.png" alt="Underbaked Pale pizza" class="pizza-card-img">
+                </div>
+                <div class="pizza-card-info">
+                  <span class="pizza-card-title">Underbaked</span>
+                  <span class="pizza-card-desc">Pale, doughy crust edge</span>
+                  <span class="pizza-card-grade fail">Grade: FAIL</span>
+                </div>
+              </button>
+
+              <!-- Burnt Preset -->
+              <button class="pizza-card" data-pizza="burnt" id="cardBurnt" aria-label="Select Burnt Charred Preset">
+                <div class="pizza-card-img-wrapper">
+                  <img src="assets/burnt.png" alt="Burnt Charred pizza" class="pizza-card-img">
+                </div>
+                <div class="pizza-card-info">
+                  <span class="pizza-card-title">Burnt / Charred</span>
+                  <span class="pizza-card-desc">Heavy charcoal, dry bake</span>
+                  <span class="pizza-card-grade fail">Grade: FAIL</span>
+                </div>
+              </button>
+
+            </div>
+
+            <!-- Scanner Actions -->
+            <div class="scan-action-container">
+              <button class="btn btn-primary" id="scanBtn">
+                <svg style="width: 18px; height: 18px; fill: currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41 15.59 7z"/></svg>
+                Scan Pizza
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: ANALYTICS & TRENDS DASHBOARD -->
+    <div id="analyticsView" class="tab-view">
+      <div class="analytics-workspace">
+        
+        <!-- Header -->
+        <div class="analytics-header">
+          <div class="analytics-title">
+            <h2>Store Performance Metrics</h2>
+            <p>BigQuery Corporate QA logs for Vegas West Store #4021</p>
+          </div>
+          <div class="analytics-controls">
+            <select class="select-dropdown" id="selectTimeframe" aria-label="Select Analytics Timeframe">
+              <option value="7">Last 7 Days (Weekly)</option>
+              <option value="30">Last 30 Days (Monthly)</option>
+              <option value="1">Today (Real-time)</option>
+            </select>
+            <select class="select-dropdown" id="selectShift" aria-label="Select Analytics Shift">
+              <option value="all">All Shifts</option>
+              <option value="day">Morning Shift (8 AM - 4 PM)</option>
+              <option value="night">Night Shift (4 PM - 12 AM)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- KPI Scorecards -->
+        <section class="kpi-grid">
+          <!-- Total Scans -->
+          <div class="kpi-card scans">
+            <div class="kpi-info">
+              <span class="kpi-label">Total Audited Scans</span>
+              <span class="kpi-value" id="kpiTotalScans">14</span>
+              <div class="kpi-change up">
+                <svg style="width: 12px; height: 12px; fill: currentColor;" viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+                <span>+24.5% vs last week</span>
+              </div>
+            </div>
+          </div>
+          <!-- Pass Rate -->
+          <div class="kpi-card pass-rate">
+            <div class="kpi-info">
+              <span class="kpi-label">Average Pass Rate</span>
+              <span class="kpi-value" id="kpiPassRate">84.5%</span>
+              <div class="kpi-change up">
+                <svg style="width: 12px; height: 12px; fill: currentColor;" viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+                <span>+3.2% vs Regional standard</span>
+              </div>
+            </div>
+          </div>
+          <!-- Flagged Alerts -->
+          <div class="kpi-card alerts">
+            <div class="kpi-info">
+              <span class="kpi-label">Failed Defects</span>
+              <span class="kpi-value" id="kpiAlerts">4</span>
+              <div class="kpi-change down">
+                <svg style="width: 12px; height: 12px; fill: currentColor;" viewBox="0 0 24 24"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+                <span>-12.8% overbaked reduction</span>
+              </div>
+            </div>
+          </div>
+          <!-- Actions Remedied -->
+          <div class="kpi-card remedy">
+            <div class="kpi-info">
+              <span class="kpi-label">Remediations Completed</span>
+              <span class="kpi-value" id="kpiRemediations">100%</span>
+              <div class="kpi-change up">
+                <svg style="width: 12px; height: 12px; fill: currentColor;" viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+                <span>No active coaching alerts</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Charts Row -->
+        <section class="charts-grid">
+          <!-- Trends Line Chart -->
+          <div class="chart-panel">
+            <div class="chart-panel-header">
+              <div class="chart-panel-title">
+                <h3>Pass Rate Over Time (%)</h3>
+                <p>Simulating daily pass rate against regional benchmark (85%)</p>
+              </div>
+              <div class="chart-legend">
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: var(--color-primary)"></span>
+                  <span>Store #4021</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: var(--text-muted); border: 1px dashed rgba(255,255,255,0.3)"></span>
+                  <span>Target Benchmark (85%)</span>
+                </div>
+              </div>
+            </div>
+            <div class="chart-content-wrapper" id="trendChartWrapper">
+              <!-- SVG chart injected by app.js -->
+            </div>
+          </div>
+
+          <!-- Common Defects Bar Chart -->
+          <div class="chart-panel">
+            <div class="chart-panel-header">
+              <div class="chart-panel-title">
+                <h3>Defects by standard parameter</h3>
+                <p>Specific physical failures logged to BigQuery</p>
+              </div>
+            </div>
+            <div class="chart-content-wrapper" id="defectChartWrapper">
+              <!-- SVG chart injected by app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Logs & Reference Checklist Grid -->
+        <div class="remedy-grid">
+          <!-- Active Store Logs Table -->
+          <div class="table-panel">
+            <div class="chart-panel-header">
+              <div class="chart-panel-title">
+                <h3>Recent Auditing Logs</h3>
+                <p>Live session telemetry synced to BigQuery analytics</p>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Scan ID</th>
+                    <th>Date / Time</th>
+                    <th>Status</th>
+                    <th>Defect Group</th>
+                    <th>Measurements</th>
+                  </tr>
+                </thead>
+                <tbody id="logsTableBody">
+                  <!-- Injected by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Standards reference guide -->
+          <div class="table-panel">
+            <div class="chart-panel-header">
+              <div class="chart-panel-title">
+                <h3>Slice & Rise Reference Guide</h3>
+                <p>Hardcoded limits under evaluation by Multimodal model</p>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Standard parameter</th>
+                    <th>Target Spec Limits</th>
+                    <th>Remediation Action if Failing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Edge Height</strong></td>
+                    <td style="color: var(--color-accent)">7/8" – 1"</td>
+                    <td>Let stretched dough rise at room temperature before baking (add proofing time).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Edge Width</strong></td>
+                    <td style="color: var(--color-accent)">1" – 1 1/4"</td>
+                    <td>Ensure uniform hand stretching, avoid pressing out gases at the very edge.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Center Volume</strong></td>
+                    <td style="color: var(--color-accent)">3/8" – 1/2"</td>
+                    <td>Uniform weight distribution during docking. Do not sauce/cheese excessively.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Top Crust Color</strong></td>
+                    <td style="color: var(--color-accent)">Scale 7 – 11</td>
+                    <td>Slow down conveyor belt speed if pale; speed up conveyor belt if over-charred.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Bottom Crust Color</strong></td>
+                    <td style="color: var(--color-accent)">Scale 6 – 10</td>
+                    <td>Adjust deck temperature calibration. Check for residual baking stone ash.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Load Vega, Vega-Lite and Vega-Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <!-- Load JS -->
+  <script src="app.js?v=20260626"></script>
+</body>
+</html>
